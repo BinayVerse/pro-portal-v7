@@ -17,11 +17,6 @@ export async function query(text: string, params: any) {
     return result;
   } catch (error) {
     console.error("Database Query Error:", error);
-    // In development, return empty result instead of throwing
-    if (process.env.NODE_ENV === 'dev') {
-      console.warn("Database not available in development mode, returning empty result");
-      return { rows: [], rowCount: 0 };
-    }
     throw new Error("Database query failed");
   }
 }

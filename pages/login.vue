@@ -152,6 +152,7 @@ const handleLogin = async () => {
       password: loginForm.value.password,
     })
 
+    // Show success notification
     showNotification('Welcome back! Login successful.', 'success', {
       title: 'Login Successful',
     })
@@ -162,6 +163,8 @@ const handleLogin = async () => {
     await navigateTo(redirectTo)
   } catch (error: any) {
     console.error('Login error:', error)
+
+    // Show API error as notification
     showNotification(error.message || 'Login failed. Please check your credentials.', 'error', {
       title: 'Login Failed',
       action: {

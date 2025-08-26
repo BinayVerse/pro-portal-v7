@@ -21,33 +21,6 @@ export default defineEventHandler(async (event) => {
     const email = body.email?.trim().toLowerCase();
     const password = body.password?.trim();
 
-    // Demo credentials for development
-    if (process.env.NODE_ENV === 'dev' && email === 'demo@example.com' && password === 'password') {
-      const token = jwt.sign(
-        {
-          user_id: 1,
-          email: email,
-          org_id: 1,
-        },
-        secret,
-        { expiresIn: '1h' }
-      );
-
-      return {
-        statusCode: 200,
-        status: 'success',
-        token,
-        user: {
-          user_id: 1,
-          email: email,
-          name: 'Demo User',
-          org_id: 1,
-          role_id: 1
-        },
-        redirect: '/admin/dashboard',
-      };
-    }
-
     const userResult = await query(
       'SELECT * FROM users WHERE email = $1 AND role_id IN (0, 1)',
       [email]

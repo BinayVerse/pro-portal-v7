@@ -5,7 +5,6 @@ import { useAuthStore } from '~/stores/auth'
 const authStore = useAuthStore()
 const config = useRuntimeConfig()
 const { showNotification } = useNotification()
-const { $error, $success } = useNuxtApp()
 
 const props = defineProps<{ authView: string }>()
 
